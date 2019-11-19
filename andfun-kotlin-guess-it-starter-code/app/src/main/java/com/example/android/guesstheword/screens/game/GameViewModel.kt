@@ -17,14 +17,18 @@ val word:LiveData<String>
     val score:LiveData<Int>
            get()=_score
 
+    private val _eventGameFinish =MutableLiveData<Boolean>()
+    val eventGameFinish: LiveData<Boolean>
+    get()=_eventGameFinish
+
     // The list of words - the front of the list is the next word to guess
     private lateinit var wordList: MutableList<String>
 
     init{
-        //Log.i("GameViewModel",)
-        Timber.i("GameViewModel created!")
         resetList()
+        nextWord()
         _score.value = 0
+        _eventGameFinish.value=false
     }
 
     override fun onCleared() {
@@ -70,7 +74,7 @@ val word:LiveData<String>
     private fun nextWord() {
         //Select and remove a word from the list
         if (wordList.isEmpty()) {
-            //gameFinished()
+            _eventGameFinish.value=true
         } else {
             _word.value = wordList.removeAt(0)
         }
@@ -86,4 +90,7 @@ val word:LiveData<String>
         nextWord()
     }
 
+    fun onGameFinishComplete(){
+        _eventGameFinish.value =false
+    }
 }
