@@ -74,7 +74,7 @@ Log.i("MainActivity","onCreate called")
         binding.dessertButton.setOnClickListener {
             onDessertClicked()
         }
-dessertTimer= DessertTimer()
+dessertTimer= DessertTimer(this.lifecycle)
         // Set the TextViews to the right values
         binding.revenue = revenue
         binding.amountSold = dessertsSold
@@ -85,7 +85,6 @@ dessertTimer= DessertTimer()
 
     override fun onStart() {
         super.onStart()
-        dessertTimer.startTimer()
         Timber.i("onStart called")
     }
 
@@ -111,7 +110,6 @@ dessertTimer= DessertTimer()
 
     override fun onStop() {
         super.onStop()
-        dessertTimer.stopTimer()
         Timber.i("onStop called")
     }
 
