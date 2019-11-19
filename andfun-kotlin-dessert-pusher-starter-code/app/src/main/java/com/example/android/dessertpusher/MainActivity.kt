@@ -18,6 +18,7 @@ package com.example.android.dessertpusher
 
 import android.content.ActivityNotFoundException
 import android.os.Bundle
+import android.os.PersistableBundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -29,6 +30,9 @@ import androidx.lifecycle.LifecycleObserver
 import com.example.android.dessertpusher.databinding.ActivityMainBinding
 import timber.log.Timber
 
+const val KEY_REVENUE="key_revenue"
+const val KEY_AMOUNTSOLD="key_amountSold"
+const val KEY_TIMER="key_timer"
 class MainActivity : AppCompatActivity(), LifecycleObserver {
 
     private var revenue = 0
@@ -74,13 +78,28 @@ Log.i("MainActivity","onCreate called")
         binding.dessertButton.setOnClickListener {
             onDessertClicked()
         }
+
 dessertTimer= DessertTimer(this.lifecycle)
+        if ( savedInstanceState!=null)
+        {
+            revenue=savedInstanceState.getInt(KEY_REVENUE)
+            dessertsSold=savedInstanceState.getInt(KEY_AMOUNTSOLD)
+dessertTimer.secondsCount=savedInstanceState.getInt(KEY_TIMER)
+        }
+
         // Set the TextViews to the right values
         binding.revenue = revenue
         binding.amountSold = dessertsSold
-
         // Make sure the correct dessert is showing
         binding.dessertButton.setImageResource(currentDessert.imageId)
+    }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_REVENUE,revenue)
+        outState.putInt(KEY_AMOUNTSOLD,dessertsSold)
+        outState.putInt("key_timer",dessertTimer.secondsCount)
+
+        Timber.i("onSaveInstanceState called")
     }
 
     override fun onStart() {
@@ -112,6 +131,8 @@ dessertTimer= DessertTimer(this.lifecycle)
         super.onStop()
         Timber.i("onStop called")
     }
+
+
 
     /**
      * Updates the score when the dessert is clicked. Possibly shows a new dessert.
