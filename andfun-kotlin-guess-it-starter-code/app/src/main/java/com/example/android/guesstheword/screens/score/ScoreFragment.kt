@@ -28,6 +28,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.android.guesstheword.R
+import com.example.android.guesstheword.databinding.GameFragmentBinding
 import com.example.android.guesstheword.databinding.ScoreFragmentBinding
 
 /**
@@ -37,6 +38,7 @@ class ScoreFragment : Fragment() {
 
     private lateinit var viewModel: ScoreViewModel
     private lateinit var viewModelFactory: ScoreViewModelFactory
+    private lateinit var binding: ScoreFragmentBinding
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -44,7 +46,7 @@ class ScoreFragment : Fragment() {
     ): View? {
 
         // Inflate view and obtain an instance of the binding class.
-        val binding: ScoreFragmentBinding = DataBindingUtil.inflate(
+        binding= DataBindingUtil.inflate(
                 inflater,
                 R.layout.score_fragment,
                 container,
@@ -56,12 +58,11 @@ class ScoreFragment : Fragment() {
         viewModelFactory= ScoreViewModelFactory(scoreFragmentArgs.score)
         viewModel = ViewModelProviders.of(this, viewModelFactory)
                 .get(ScoreViewModel::class.java)
+        binding.scoreViewModel=viewModel
         // Add observer for score
         viewModel.score.observe(this, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
         })
-
-        binding.playAgainButton.setOnClickListener { viewModel.onPlayAgain() }
 
         // Navigates back to title when button is pressed
         viewModel.eventPlayAgain.observe(this, Observer { playAgain ->
