@@ -52,7 +52,6 @@ class GameFragment : Fragment() {
         )
 
 
-        Timber.i("Called ViewModelProvides.of!")
         viewModel = ViewModelProviders.of(this).get(GameViewModel::class.java)
 
 
