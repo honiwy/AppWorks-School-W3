@@ -36,11 +36,12 @@ private val viewModelJob = Job()
         _navigateToSleepTracker.value = null
     }
 
-    fun onSetSleepQuality(quality: Int){
+    fun onSetSleepQuality(quality: Int, info: String){
         uiScope.launch{
             withContext(Dispatchers.IO){
                 val tonight = database.get(sleepNightKey)?: return@withContext
-                tonight.sleepQuality =quality
+                tonight.sleepQuality = quality
+                tonight.sleepInfo = info
                 database.update(tonight)
             }
             _navigateToSleepTracker.value=true

@@ -16,8 +16,6 @@
 
 package com.example.android.trackmysleepquality.database
 
-import android.os.Parcel
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -28,7 +26,7 @@ data class SleepNight(
         var nightId: Long = 0L,
 
         @ColumnInfo(name = "start_time_milli")
-        var startTimeMilli: Long = System.currentTimeMillis(),
+        val startTimeMilli: Long = System.currentTimeMillis(),
 
         @ColumnInfo(name = "end_time_milli")
         var endTimeMilli: Long = startTimeMilli,
@@ -37,35 +35,5 @@ data class SleepNight(
         var sleepQuality: Int = -1,
 
         @ColumnInfo(name = "sleep_info")
-        var sleepInfo: String = ""
-
-) : Parcelable {
-    constructor(parcel: Parcel) : this(
-            parcel.readLong(),
-            parcel.readLong(),
-            parcel.readLong(),
-            parcel.readInt()) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeLong(nightId)
-        parcel.writeLong(startTimeMilli)
-        parcel.writeLong(endTimeMilli)
-        parcel.writeInt(sleepQuality)
-        parcel.writeString(sleepInfo)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<SleepNight> {
-        override fun createFromParcel(parcel: Parcel): SleepNight {
-            return SleepNight(parcel)
-        }
-
-        override fun newArray(size: Int): Array<SleepNight?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+        var sleepInformation: String = ""
+)
