@@ -1,15 +1,24 @@
 1. What is ​Encapsulation​? Try to list out the benefits of Encapsulation.
-A:
+A:封裝就是把變數用class裝起來設為private,然後再透過public的方法來修改class中的變數
+透過get, set的方式可以設定一些邊界條件,例如使用者想將考試的變數設為-20則可在set中透過if else做調整
 
 2. Try to explain what is ​enum​ and why we use them.
-A:
+A:列舉是一種可以命名各element的資料型態,例如switch的顏色的時候可能需要指定R,G,B其中一種
+如果輸入String"RED","GREEN","BLUE"可能會打錯,只輸入R,G,B別人又不懂是什麼
+(RGB應該蠻好理解,但是如果是某種疾病分類就不好以單一字母呈現)
+也無法以所謂Maggic number,沒人會知道R=0,G=1,B=2除非深入研究
+這時候Enum就可以派上用場
+使用Color.Red, Color.Green, Color.Blue立刻一目了然
 
 3. How to use ​enum​ in Kotlin? Attach a sample code that use enum in Kotlin.
 A:
+先列舉:enum StainMethod {Romanowsky, Papanicolaou, HematoxylinNEosin}
+然後在class使用:var thisStain:StainMethod = StainMethod.Papanicolaou
 
 4. What are the ​differences​ between ​LinearLayout​ and ​RelativeLayout​?
 Try to explain indetails.
-A:
+A:​LinearLayout​ 會垂直或水平排列元件 有點像是c#的flowLayoutPanel, 
+  ​RelativeLayout​ 則是會以盛裝容器的相對位置來排列元件所以元件在程式放置的先後順序不會影響結果
 
 5. Try to explain the benefits of ​ConstraintLayout​. Why you should use it?
-A:
+A:有ConstraintLayout的話就不用再使用​LinearLayout​和RelativeLayout來包裝元件,整個xml就會非常乾淨​
