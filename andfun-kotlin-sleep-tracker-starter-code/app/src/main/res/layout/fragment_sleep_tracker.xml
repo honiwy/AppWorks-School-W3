@@ -23,9 +23,10 @@
          the whole ViewModel, so that we can access the LiveData,
          click handlers, and state variables. -->
     <data>
+
         <variable
-name="sleepTrackerViewModel"
-        type="com.example.android.trackmysleepquality.sleeptracker.SleepTrackerViewModel"/>
+            name="sleepTrackerViewModel"
+            type="com.example.android.trackmysleepquality.sleeptracker.SleepTrackerViewModel" />
     </data>
 
     <!-- Start of the visible fragment layout using ConstraintLayout -->
@@ -71,12 +72,14 @@ name="sleepTrackerViewModel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/margin"
+            android:onClick="@{()->sleepTrackerViewModel.onStartTracking()}"
             android:text="@string/start"
             app:layout_constraintBaseline_toBaselineOf="@id/stop_button"
             app:layout_constraintEnd_toStartOf="@+id/stop_button"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
-android:onClick="@{()->sleepTrackerViewModel.onStartTracking()}"/>
+            android:enabled="@{sleepTrackerViewModel.startButtonVisible}"/>
+
         <Button
             android:id="@+id/stop_button"
             style="@style/SleepButtons"
@@ -84,11 +87,12 @@ android:onClick="@{()->sleepTrackerViewModel.onStartTracking()}"/>
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
+            android:onClick="@{()->sleepTrackerViewModel.onStopTracking()}"
             android:text="@string/stop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/start_button"
             app:layout_constraintTop_toTopOf="parent"
-            android:onClick="@{()->sleepTrackerViewModel.onStopTracking()}"/>
+            android:enabled="@{sleepTrackerViewModel.stopButtonVisible}"/>
 
         <Button
             android:id="@+id/clear_button"
@@ -98,11 +102,12 @@ android:onClick="@{()->sleepTrackerViewModel.onStartTracking()}"/>
             android:layout_marginStart="@dimen/margin"
             android:layout_marginEnd="@dimen/margin"
             android:layout_marginBottom="@dimen/margin"
+            android:onClick="@{()->sleepTrackerViewModel.onClear()}"
             android:text="@string/clear"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:onClick="@{()->sleepTrackerViewModel.onClear()}"/>
+            android:enabled="@{sleepTrackerViewModel.clearButtonVisible}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
