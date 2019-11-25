@@ -64,9 +64,12 @@ class SleepQualityFragment : Fragment() {
                         this, viewModelFactory).get(SleepQualityViewModel::class.java)
 
 
+
         // To use the View Model with data binding, you have to explicitly
         // give the binding object a reference to it.
         binding.sleepQualityViewModel = sleepQualityViewModel
+
+
 
         // Add an Observer to the state variable for Navigating when a Quality icon is tapped.
         sleepQualityViewModel.navigateToSleepTracker.observe(this, Observer {
@@ -79,6 +82,18 @@ class SleepQualityFragment : Fragment() {
             }
         })
 
+        binding.editText.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                sleepQualityViewModel.sleepInfo = "Do you wanna build a snowman?"
+            }
+        })
         return binding.root
     }
 }
+

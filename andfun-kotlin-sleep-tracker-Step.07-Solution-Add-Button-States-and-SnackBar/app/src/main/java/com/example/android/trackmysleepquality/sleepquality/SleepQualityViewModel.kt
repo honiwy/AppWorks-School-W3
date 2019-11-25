@@ -75,7 +75,7 @@ class SleepQualityViewModel(
         super.onCleared()
         viewModelJob.cancel()
     }
-
+    var sleepInfo:String=""
 
     /**
      * Call this immediately after navigating to [SleepTrackerFragment]
@@ -97,7 +97,7 @@ class SleepQualityViewModel(
             withContext(Dispatchers.IO) {
                 val tonight = database.get(sleepNightKey) ?: return@withContext
                 tonight.sleepQuality = quality
-               tonight.sleepInformation = "123"
+               tonight.sleepInformation = sleepInfo
                 database.update(tonight)
             }
 
