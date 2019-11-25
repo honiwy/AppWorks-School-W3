@@ -24,6 +24,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import android.text.Editable
+import android.text.TextWatcher
 import androidx.navigation.fragment.findNavController
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepDatabase
@@ -82,7 +84,7 @@ class SleepQualityFragment : Fragment() {
             }
         })
 
-        binding.editText.addTextChangedListener(object : TextWatcher {
+       binding.editText.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -90,7 +92,7 @@ class SleepQualityFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                sleepQualityViewModel.sleepInfo = "Do you wanna build a snowman?"
+                sleepQualityViewModel.sleepInfo = s.toString()
             }
         })
         return binding.root
