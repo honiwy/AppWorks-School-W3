@@ -28,6 +28,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.android.trackmysleepquality.R
 import com.example.android.trackmysleepquality.database.SleepDatabase
 import com.example.android.trackmysleepquality.databinding.FragmentSleepQualityBinding
+import kotlinx.android.synthetic.main.fragment_sleep_quality.*
 
 /**
  * Fragment that displays a list of clickable icons,
@@ -61,6 +62,7 @@ class SleepQualityFragment : Fragment() {
         val sleepQualityViewModel =
                 ViewModelProviders.of(
                         this, viewModelFactory).get(SleepQualityViewModel::class.java)
+
 
         // To use the View Model with data binding, you have to explicitly
         // give the binding object a reference to it.

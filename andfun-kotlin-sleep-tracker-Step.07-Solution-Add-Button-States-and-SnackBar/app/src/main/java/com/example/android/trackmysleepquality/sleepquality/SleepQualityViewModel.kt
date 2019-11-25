@@ -59,6 +59,7 @@ class SleepQualityViewModel(
      */
     private val _navigateToSleepTracker = MutableLiveData<Boolean?>()
 
+
     /**
      * When true immediately navigate back to the [SleepTrackerFragment]
      */
@@ -74,6 +75,7 @@ class SleepQualityViewModel(
         super.onCleared()
         viewModelJob.cancel()
     }
+
 
     /**
      * Call this immediately after navigating to [SleepTrackerFragment]
@@ -95,7 +97,7 @@ class SleepQualityViewModel(
             withContext(Dispatchers.IO) {
                 val tonight = database.get(sleepNightKey) ?: return@withContext
                 tonight.sleepQuality = quality
-               tonight.sleepInformation = "good night"
+               tonight.sleepInformation = "123"
                 database.update(tonight)
             }
 

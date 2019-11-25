@@ -42,9 +42,9 @@ import androidx.appcompat.app.AppCompatActivity
  * This main activity is just a container for our fragments,
  * where the real action is.
  */
-enum StainMethod {Romanowsky, Papanicolaou, HematoxylinNEosin}
+
 class MainActivity : AppCompatActivity() {
-var thisStain:StainMethod=StainMethod.Papanicolaou
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
